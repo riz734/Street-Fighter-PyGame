@@ -32,10 +32,15 @@ YELL = (255,255,153)
 RED = (255,0,0)
 
 #fighter vars
+WARRIOR_SCALE = 4
 WARRIOR_SIZE = 162
-WARRIOR_DATA = [WARRIOR_SIZE]
+WARRIOR_OFFSET = [72,56]
+WARRIOR_DATA = [WARRIOR_SIZE,WARRIOR_SCALE,WARRIOR_OFFSET]
+WIZARD_SCALE = 3
 WIZARD_SIZE = 250
-WIZARD_DATA = [WIZARD_SIZE]
+WIZARD_OFFSET = [112,107]
+WIZARD_DATA = [WIZARD_SIZE,WIZARD_SCALE,WIZARD_OFFSET]
+WIZARD_SCALE = 3
 
 
 #draw background
@@ -51,8 +56,8 @@ def draw_health_bars(health,x,y):
     pygame.draw.rect(screen,YELL,(x,y,400*ratio,30))
 
 #create two instances of fighter
-fighter1 = Fighter(200,310,WARRIOR_DATA,warrior_sheet,WARRIOR_ANIMATION_STEP)
-fighter2 = Fighter(700,310,WIZARD_DATA, wizard_sheet,WIZARD_ANIMATION_STEP)
+fighter1 = Fighter(200,310,False,WARRIOR_DATA,warrior_sheet,WARRIOR_ANIMATION_STEP)
+fighter2 = Fighter(700,310,True,WIZARD_DATA, wizard_sheet,WIZARD_ANIMATION_STEP)
 
 
 #game loop, constantly running, updating until break
@@ -70,6 +75,11 @@ while run:
     #show stats
     draw_health_bars(fighter1.health,20,20)
     draw_health_bars(fighter2.health,580,20)
+
+    #update animation
+    fighter1.update()
+    fighter2.update()
+
 
     #fighter2.move()
 
