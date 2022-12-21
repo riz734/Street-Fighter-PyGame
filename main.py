@@ -11,6 +11,10 @@ SCREEN_HEIGHT = 600
 screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 pygame.display.set_caption("Brawler")
 
+#set framerate
+clock = pygame.time.Clock()
+FPS = 60
+
 #bg image
 bg_image = pygame.image.load("assets/images/background/background.jpg").convert_alpha()
 
@@ -26,7 +30,16 @@ fighter2 = Fighter(700,310)
 run = True
 while run:
 
+    clock.tick(FPS)
+
     draw_bg()
+
+    #move fighter
+    fighter1.move(SCREEN_WIDTH)
+    #fighter2.move()
+
+    fighter1.draw(screen)
+    fighter2.draw(screen)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
