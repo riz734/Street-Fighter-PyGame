@@ -59,12 +59,13 @@ class Fighter():
         self.rect.y += dy
 
     def attack(self,surface,target):
-        self.attack = True
-        attacking_rect = pygame.Rect(self.rect.centerx,self.rect.y,2*self.rect.width,self.rect.height)
+        self.attacking = True
+        attacking_rect = pygame.Rect(self.rect.centerx,self.rect.y,2*self.rect.width,self.rect.height-10)
         if attacking_rect.colliderect(target.rect):
+            print('hit')
             target.health -= 10
         pygame.draw.rect(surface,(0,255,0),attacking_rect)
-
+        
 
 
 
